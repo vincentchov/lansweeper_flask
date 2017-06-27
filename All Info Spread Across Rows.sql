@@ -25,4 +25,4 @@ SELECT TOP (1000) htblticket.ticketid as TicketID
 	/* TicketType */
 	INNER JOIN htbltickettypes
 		ON htblticket.tickettypeid = htbltickettypes.tickettypeid
-  WHERE htblticket.ticketid = 100;
+  WHERE htbltickettypes.typename LIKE 'IT Support';
