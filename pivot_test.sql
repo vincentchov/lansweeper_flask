@@ -3,7 +3,6 @@
 if not exists (SELECT * FROM sys.tables where name='PrePivotTempTable')
 	CREATE table PrePivotTempTable
 		([TicketID]  int,
-		 [iid] int,
 		 [FieldID]   int,
 		 [FieldName] nvarchar(max),
 		 [FieldData] nvarchar(max)
@@ -15,9 +14,8 @@ DELETE FROM PrePivotTempTable
 /* Populate the PrePivotTempTable with the FieldName and FieldData to be pivotted */
 
 INSERT INTO 
-    PrePivotTempTable ([TicketID],[iid], [FieldID],[FieldName],[FieldData])
+    PrePivotTempTable ([TicketID],[FieldID],[FieldName],[FieldData])
 SELECT TOP (1000) htblticketcustomfield.ticketid as [TicketID]
-	  , row_number() OVER (PARTITION BY (FieldName) ORDER BY FieldData) AS iid
 	  , htblticketcustomfield.fieldid as [FieldID]
 	  , htblcustomfields.name as [FieldName]
 	  , htblticketcustomfield.data as [FieldData]
@@ -32,17 +30,21 @@ SELECT TOP (1000) htblticketcustomfield.ticketid as [TicketID]
 DECLARE @cols AS NVARCHAR(MAX),
     @query  AS NVARCHAR(MAX)
 
-select @cols = STUFF((SELECT DISTINCT',' + QUOTENAME(FieldName)
-                    from PrePivotTempTable
-                    group by  FieldName, TicketID
+select @cols = STUFF((SELECT DISTINCT ',' + QUOTENAME(FieldName)
+                    from (select DISTINCT  
+				 TicketID
+				, FieldData
+				, FieldName
+                from PrePivotTempTable
+				) x
+				group by  FieldName, TicketID
             FOR XML PATH(''), TYPE
             ).value('.', 'NVARCHAR(MAX)')
 		,1,1,'')
 
-set @query = 'SELECT TicketID, ' + @cols + ' from 
+set @query = 'SELECT DISTINCT TicketID AS TicketID, ' + @cols + ' from 
              (
-                select  
-				TicketID
+                select TicketID
 				, FieldData
 				, FieldName
                 from PrePivotTempTable
