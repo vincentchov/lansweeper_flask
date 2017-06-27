@@ -1,17 +1,23 @@
-if not exists (SELECT * FROM sys.tables where name='TempTable')
-	CREATE table TempTable
+/* Reset the temporary pivot table */
+
+if not exists (SELECT * FROM sys.tables where name='PrePivotTempTable')
+	CREATE table PrePivotTempTable
 		([TicketID]  int,
+		 [iid] int,
 		 [FieldID]   int,
 		 [FieldName] nvarchar(max),
 		 [FieldData] nvarchar(max)
 	)
 go
 
-DELETE FROM TempTable
+DELETE FROM PrePivotTempTable
+
+/* Populate the PrePivotTempTable with the FieldName and FieldData to be pivotted */
 
 INSERT INTO 
-    TempTable ([TicketID],[FieldID],[FieldName],[FieldData])
+    PrePivotTempTable ([TicketID],[iid], [FieldID],[FieldName],[FieldData])
 SELECT TOP (1000) htblticketcustomfield.ticketid as [TicketID]
+	  , row_number() OVER (PARTITION BY (FieldName) ORDER BY FieldData) AS iid
 	  , htblticketcustomfield.fieldid as [FieldID]
 	  , htblcustomfields.name as [FieldName]
 	  , htblticketcustomfield.data as [FieldData]
@@ -21,20 +27,25 @@ SELECT TOP (1000) htblticketcustomfield.ticketid as [TicketID]
   WHERE [lansweeperdb].[dbo].[htblticketcustomfield].fieldid NOT IN (27,41,42,43,45,52,88)
   ORDER BY [TicketID],[FieldID];
 
+/* Build the dynamic query that performs the pivotting */
+
 DECLARE @cols AS NVARCHAR(MAX),
     @query  AS NVARCHAR(MAX)
 
 select @cols = STUFF((SELECT DISTINCT',' + QUOTENAME(FieldName)
-                    from TempTable
+                    from PrePivotTempTable
                     group by  FieldName, TicketID
             FOR XML PATH(''), TYPE
             ).value('.', 'NVARCHAR(MAX)')
 		,1,1,'')
 
-set @query = 'SELECT ' + @cols + ' from 
+set @query = 'SELECT TicketID, ' + @cols + ' from 
              (
-                select FieldData,  FieldName
-                from TempTable
+                select  
+				TicketID
+				, FieldData
+				, FieldName
+                from PrePivotTempTable
             ) x
             pivot 
             (
@@ -42,4 +53,4 @@ set @query = 'SELECT ' + @cols + ' from
                 for FieldName in (' + @cols + ')
             ) p '
 
-exec sp_executesql @query;
+EXEC(@query);
