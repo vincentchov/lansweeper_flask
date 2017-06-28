@@ -1,3 +1,6 @@
 __pycache__
 secrets.py
 *.pyc
+*.csv
+*.xlsx
+*.xls
