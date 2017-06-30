@@ -4,3 +4,5 @@ secrets.py
 *.csv
 *.xlsx
 *.xls
+env
+.swp
