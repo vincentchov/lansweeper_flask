@@ -84,19 +84,15 @@ df_to_join = pandas.read_json(db.query(to_join_query).export("json"))
 joined = df_to_join.join(pivoted, on="TicketID")
 
 # Reorder the columns so the final table starts with the right columns
-first_cols_order = ['TicketID', 'TicketType', "Location of issue",
-                    "Asset Ownership ", "PSI Owned Asset Types",
-                    "Hardware Type"]
-joined_cols = joined.columns.tolist()
+head_columns_in_order = ['TicketID', 'TicketType', "Location of Issue",
+                         "Asset Ownership ", "PSI Owned Asset Types",
+                         "Hardware Type"]
 
-for col in first_cols_order:
-    if joined_cols.index(col):
-        # Remove any instances of the above column names from joined_cols
-        del joined_cols[joined_cols.index(col)]
+# Filter out the columns from head_columns_in_order
+tail_columns = [col for col in joined.columns.tolist()
+                if col not in head_columns_in_order]
 
-# Concatenate the columns lists with the remaining column names
-# and use that to set the column names for the DataFrame
-joined_cols = first_cols_order + joined_cols
-joined = joined[joined_cols]
-
-joined.to_csv("joined.csv")
+# Reorder the columns and export it
+ordered_table = joined[head_columns_in_order + tail_columns]
+ordered_table.to_csv("it_report.csv")
+print("Exported the report to it_report.csv")
