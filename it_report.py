@@ -1,33 +1,11 @@
-import pyodbc
 import records
 import json
 import pandas
-from secrets import sql_user, sql_passwd
 
-# Log into the MS-SQL Server
-# Connect to the MS-SQL Server using a user-specified DSN.  I called mine
+# Log into the MS-SQL Server using a user-specified DSN.  I called mine
 # "PSI-SQL-DSN"
-
 server = "PSI-SQL-DSN"
-database = "lansweeperdb"
-username = sql_user
-password = sql_passwd
-db = records.Database(db_url="mssql://{}:{}@{}".format(username,
-                                                       password,
-                                                       server))
-
-
-def queryAndPrintDataSet(queryString):
-    rows = db.query(queryString)
-    print(rows.dataset)
-    print("\n")
-
-
-def queryAndPrintJSON(queryString):
-    rows = db.query(queryString)
-    print(json.dumps(json.loads(rows.export('json')),
-                     indent=4, sort_keys=True), "\n")
-
+db = records.Database(db_url="mssql://" + server)
 
 # Write the query that gets all the FieldNames and FieldData for a given
 # TicketID prior to pivoting
