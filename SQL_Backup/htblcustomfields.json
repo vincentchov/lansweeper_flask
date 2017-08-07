@@ -1,1 +1,1028 @@
-[{"fieldid": 15, "name": "Location of Issue", "type": 4, "labeltext": "REQUIRED:  Choose the location where the affected asset is or incident took place.", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 27, "name": "External Reference ID", "type": 0, "labeltext": "Reference ID of external provider", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 40, "name": "OLD_TICKET_ID", "type": 8, "labeltext": "Keeps track of imported tickets", "editable": false, "showinoverview": false, "showinsummary": false}, {"fieldid": 41, "name": "This could be a safety risk", "type": 5, "labeltext": "REQUIRED:  Please identify if this issue could be a safety concern.", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 42, "name": "Occurrence", "type": 5, "labeltext": "Is this a one-time occurrence or ongoing event?", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 43, "name": "How many people are affected by the issue?", "type": 8, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 45, "name": "Has the issue been addressed or fixed?", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 46, "name": "Facility Asset Selection", "type": 4, "labeltext": "Tier 1 and Tier 2 selections for Infrastructure & Maintenance", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 48, "name": "Door Selection", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 50, "name": "Security Issue Type", "type": 10, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 51, "name": "Incident / Accident", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 52, "name": "Was this an Escape? (Min of 2 bus.days, +$5,000 loss, or Export Violation)", "type": 4, "labeltext": "REQUIRED:  Escape=service, products, documents fail to meet int/external customer requirements.  Guideline is a loss of +2 business days or +$5,000 (Exception: ITC Export Escapes)", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 53, "name": "Near Miss", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 54, "name": "Floor Related issues", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 55, "name": "Asset Ownership ", "type": 10, "labeltext": "PSI Owned, PW Owned, or other (Doosan, Remote, Customer Site) (Hardware, Software, Connection)", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 56, "name": "Pratt & Whitney UCA Asset Types", "type": 10, "labeltext": "PW Owned Hardware, Software, Connection", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 57, "name": "CSC Ticket Number", "type": 0, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 58, "name": "CSC Ticket Submission Date", "type": 2, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 59, "name": "Root Cause", "type": 0, "labeltext": "What is the underlying cause of the issue?", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 60, "name": "PSI Owned Asset Types", "type": 10, "labeltext": "Hardware, Software, Connection", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 62, "name": "Wall / Window Issue", "type": 4, "labeltext": "Issue with a wall or window", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 63, "name": "Floor Issue", "type": 4, "labeltext": "Issue with workplace floor", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 64, "name": "Building issue", "type": 4, "labeltext": "Issue with the work building", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 65, "name": "Lights / Lighting Issue", "type": 4, "labeltext": "Issue with lights or lighting", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 66, "name": "Sound / Smell", "type": 4, "labeltext": "Issue with sound or odors", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 67, "name": "Temperature", "type": 4, "labeltext": "Issues with room / ambient temperature", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 68, "name": "Furniture", "type": 4, "labeltext": "Issue with office furniture", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 69, "name": "Restroom Issue", "type": 4, "labeltext": "Issue with restrooms / restroom supplies", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 70, "name": "Hallway Issue", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 71, "name": "Breakroom / Kitchen issue - old", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 72, "name": "Conference Room issue", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 73, "name": "Parking / Parking Lot Issue", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 74, "name": "Elevator Issue", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 75, "name": "Stairwell Issue", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 76, "name": "Lobby Area Issue", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 77, "name": "Office Supplies", "type": 4, "labeltext": "Issue with supplies / lack of supplies", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 78, "name": "Housekeeping Issue", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 79, "name": "Inter-location Issue", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 80, "name": "Ceiling", "type": 4, "labeltext": "Issue with the office / building ceiling or roof", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 81, "name": "Computer Hardware", "type": 4, "labeltext": "Computer-related equipment", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 82, "name": "Telecommunication Hardware", "type": 4, "labeltext": "Equipment used to communicate", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 83, "name": "Hardware Type", "type": 4, "labeltext": "Identify the equipment with the issue.", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 84, "name": "Printing Hardware", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 85, "name": "Cameras", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 87, "name": "Telecommunication Hardware Issues", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 88, "name": "Specific Defect", "type": 10, "labeltext": "What is the defect that has occurred?", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 89, "name": "Printing Issues", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 90, "name": "Fax / Scanner Issues", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 91, "name": "Conference 1 - Projector part affected", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 92, "name": "Conference 2 - Projector part affected", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 93, "name": "Projectors", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 94, "name": "Conference 4 - Projector part affected", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 95, "name": "Conference 5 - Projector part affected", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 96, "name": "Conference 6 - Projector part affected", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 97, "name": "Other / Mobile Projector Part Affected", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 98, "name": "Software ", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 99, "name": "Software Issues", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 100, "name": "Computer-Related Hardware", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 101, "name": "PC / Tower - Related", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 102, "name": "Walk-up Related", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 103, "name": "Laptop-related", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 104, "name": "Network / Connection Issues", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 105, "name": "Network / Connection Related", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 106, "name": "Export Issues", "type": 10, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 107, "name": "Training Issues", "type": 10, "labeltext": "REQUIRED: Please select the topic that your ticket relates to.", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 108, "name": "Engineering Issues", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 109, "name": "Finance Related Issues", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 110, "name": "Defects", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 111, "name": "Shop Assembly", "type": 4, "labeltext": "Issues related to the Shop assembly operations", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 112, "name": "Shop Locations", "type": 10, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 113, "name": "Tools / Parts - Related", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 114, "name": "Shop Equipment & Process Issues", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 115, "name": "Shop Defects", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 116, "name": "Shop-related Operations", "type": 10, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 117, "name": "Instrumentation Process Issues", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 118, "name": "Instrumentation - Tool / Part Related", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 119, "name": "Shop - Levels", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 120, "name": "Instrumentation Related", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 121, "name": "Shipping-Related Issues", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 122, "name": "Receiving-Related Issues", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 123, "name": "EH & S Issues", "type": 10, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 124, "name": "Customer-Related issues", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 125, "name": "Customer / Vendor", "type": 10, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 126, "name": "Vendor-Related Issues", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 127, "name": "Name of Customer", "type": 0, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 128, "name": "Name of Vendor", "type": 0, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 129, "name": "Timesheet - Related", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 130, "name": "Human Resource / Personnel Issues", "type": 10, "labeltext": "REQUIRED:  Choose whether the Human Resources issues was related to Recruiting/Onboarding or Personnel/Policy.", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 131, "name": "Recruiting / Onboarding Related Issues", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 132, "name": "Personnel / HR Process Related Issues", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 133, "name": "HR Process & Personnel Related issues", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 134, "name": "Name(s) of person(s) issue relates to (Optional)", "type": 0, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 135, "name": "Security", "type": 10, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 136, "name": "General Security", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 137, "name": "Access System / Badging", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 138, "name": "Physical Security", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 139, "name": "Common Areas", "type": 10, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 140, "name": "Building Infrastructure", "type": 10, "labeltext": "Building issues (Ceiling, Walls, Windows, Floors)", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 141, "name": "Fixtures & Working Environment", "type": 10, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 142, "name": "Facility Issue Types", "type": 10, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 143, "name": "Breakroom / Kitchen Issue Types", "type": 10, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 144, "name": "Breakroom Equipment Issues", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 145, "name": "Breakroom Supplies & Misc. Issues", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 146, "name": "Management or Project Management Issue", "type": 10, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 147, "name": "Leadership / Management Issues", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 148, "name": "Project Management Issues", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 149, "name": "Project / SOW Specifics", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 150, "name": "Project Managing Processes & Tools", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 151, "name": "Quality & Continuous Improvement / ACE", "type": 10, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 152, "name": "Quality-Related Issues", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 153, "name": "Continouous Improvement / ACE", "type": 4, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 154, "name": "Administrative & Business Development Issues", "type": 10, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 155, "name": "Administrative Issues", "type": 10, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}, {"fieldid": 156, "name": "Business Development Issues", "type": 10, "labeltext": "", "editable": true, "showinoverview": false, "showinsummary": true}]
+[
+    {
+        "editable": true,
+        "fieldid": 15,
+        "labeltext": "REQUIRED:  Choose the location where the affected asset is or incident took place.",
+        "name": "Location of Issue",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 27,
+        "labeltext": "Reference ID of external provider",
+        "name": "External Reference ID",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 0
+    },
+    {
+        "editable": false,
+        "fieldid": 40,
+        "labeltext": "Keeps track of imported tickets",
+        "name": "OLD_TICKET_ID",
+        "showinoverview": false,
+        "showinsummary": false,
+        "type": 8
+    },
+    {
+        "editable": true,
+        "fieldid": 41,
+        "labeltext": "REQUIRED:  Please identify if this issue could be a safety concern.",
+        "name": "This could be a safety risk",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 5
+    },
+    {
+        "editable": true,
+        "fieldid": 42,
+        "labeltext": "Is this a one-time occurrence or ongoing event?",
+        "name": "Occurrence",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 5
+    },
+    {
+        "editable": true,
+        "fieldid": 43,
+        "labeltext": "",
+        "name": "How many people are affected by the issue?",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 8
+    },
+    {
+        "editable": true,
+        "fieldid": 45,
+        "labeltext": "",
+        "name": "Has the issue been addressed or fixed?",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 46,
+        "labeltext": "Tier 1 and Tier 2 selections for Infrastructure & Maintenance",
+        "name": "Facility Asset Selection",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 48,
+        "labeltext": "",
+        "name": "Door Selection",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 50,
+        "labeltext": "",
+        "name": "Security Issue Type",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 10
+    },
+    {
+        "editable": true,
+        "fieldid": 51,
+        "labeltext": "",
+        "name": "Incident / Accident",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 52,
+        "labeltext": "REQUIRED:  Escape=service, products, documents fail to meet int/external customer requirements.  Guideline is a loss of +2 business days or +$5,000 (Exception: ITC Export Escapes)",
+        "name": "Was this an Escape? (Min of 2 bus.days, +$5,000 loss, or Export Violation)",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 53,
+        "labeltext": "",
+        "name": "Near Miss",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 54,
+        "labeltext": "",
+        "name": "Floor Related issues",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 55,
+        "labeltext": "PSI Owned, PW Owned, or other (Doosan, Remote, Customer Site) (Hardware, Software, Connection)",
+        "name": "Asset Ownership ",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 10
+    },
+    {
+        "editable": true,
+        "fieldid": 56,
+        "labeltext": "PW Owned Hardware, Software, Connection",
+        "name": "Pratt & Whitney UCA Asset Types",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 10
+    },
+    {
+        "editable": true,
+        "fieldid": 57,
+        "labeltext": "",
+        "name": "CSC Ticket Number",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 0
+    },
+    {
+        "editable": true,
+        "fieldid": 58,
+        "labeltext": "",
+        "name": "CSC Ticket Submission Date",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 2
+    },
+    {
+        "editable": true,
+        "fieldid": 59,
+        "labeltext": "What is the underlying cause of the issue?",
+        "name": "Root Cause",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 0
+    },
+    {
+        "editable": true,
+        "fieldid": 60,
+        "labeltext": "Hardware, Software, Connection",
+        "name": "PSI Owned Asset Types",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 10
+    },
+    {
+        "editable": true,
+        "fieldid": 62,
+        "labeltext": "Issue with a wall or window",
+        "name": "Wall / Window Issue",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 63,
+        "labeltext": "Issue with workplace floor",
+        "name": "Floor Issue",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 64,
+        "labeltext": "Issue with the work building",
+        "name": "Building issue",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 65,
+        "labeltext": "Issue with lights or lighting",
+        "name": "Lights / Lighting Issue",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 66,
+        "labeltext": "Issue with sound or odors",
+        "name": "Sound / Smell",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 67,
+        "labeltext": "Issues with room / ambient temperature",
+        "name": "Temperature",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 68,
+        "labeltext": "Issue with office furniture",
+        "name": "Furniture",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 69,
+        "labeltext": "Issue with restrooms / restroom supplies",
+        "name": "Restroom Issue",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 70,
+        "labeltext": "",
+        "name": "Hallway Issue",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 71,
+        "labeltext": "",
+        "name": "Breakroom / Kitchen issue - old",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 72,
+        "labeltext": "",
+        "name": "Conference Room issue",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 73,
+        "labeltext": "",
+        "name": "Parking / Parking Lot Issue",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 74,
+        "labeltext": "",
+        "name": "Elevator Issue",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 75,
+        "labeltext": "",
+        "name": "Stairwell Issue",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 76,
+        "labeltext": "",
+        "name": "Lobby Area Issue",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 77,
+        "labeltext": "Issue with supplies / lack of supplies",
+        "name": "Office Supplies",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 78,
+        "labeltext": "",
+        "name": "Housekeeping Issue",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 79,
+        "labeltext": "",
+        "name": "Inter-location Issue",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 80,
+        "labeltext": "Issue with the office / building ceiling or roof",
+        "name": "Ceiling",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 81,
+        "labeltext": "Computer-related equipment",
+        "name": "Computer Hardware",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 82,
+        "labeltext": "Equipment used to communicate",
+        "name": "Telecommunication Hardware",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 83,
+        "labeltext": "Identify the equipment with the issue.",
+        "name": "Hardware Type",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 84,
+        "labeltext": "",
+        "name": "Printing Hardware",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 85,
+        "labeltext": "",
+        "name": "Cameras",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 87,
+        "labeltext": "",
+        "name": "Telecommunication Hardware Issues",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 88,
+        "labeltext": "What is the defect that has occurred?",
+        "name": "Specific Defect",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 10
+    },
+    {
+        "editable": true,
+        "fieldid": 89,
+        "labeltext": "",
+        "name": "Printing Issues",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 90,
+        "labeltext": "",
+        "name": "Fax / Scanner Issues",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 91,
+        "labeltext": "",
+        "name": "Conference 1 - Projector part affected",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 92,
+        "labeltext": "",
+        "name": "Conference 2 - Projector part affected",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 93,
+        "labeltext": "",
+        "name": "Projectors",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 94,
+        "labeltext": "",
+        "name": "Conference 4 - Projector part affected",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 95,
+        "labeltext": "",
+        "name": "Conference 5 - Projector part affected",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 96,
+        "labeltext": "",
+        "name": "Conference 6 - Projector part affected",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 97,
+        "labeltext": "",
+        "name": "Other / Mobile Projector Part Affected",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 98,
+        "labeltext": "",
+        "name": "Software ",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 99,
+        "labeltext": "",
+        "name": "Software Issues",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 100,
+        "labeltext": "",
+        "name": "Computer-Related Hardware",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 101,
+        "labeltext": "",
+        "name": "PC / Tower - Related",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 102,
+        "labeltext": "",
+        "name": "Walk-up Related",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 103,
+        "labeltext": "",
+        "name": "Laptop-related",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 104,
+        "labeltext": "",
+        "name": "Network / Connection Issues",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 105,
+        "labeltext": "",
+        "name": "Network / Connection Related",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 106,
+        "labeltext": "",
+        "name": "Export Issues",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 10
+    },
+    {
+        "editable": true,
+        "fieldid": 107,
+        "labeltext": "REQUIRED: Please select the topic that your ticket relates to.",
+        "name": "Training Issues",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 10
+    },
+    {
+        "editable": true,
+        "fieldid": 108,
+        "labeltext": "",
+        "name": "Engineering Issues",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 109,
+        "labeltext": "",
+        "name": "Finance Related Issues",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 110,
+        "labeltext": "",
+        "name": "Defects",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 111,
+        "labeltext": "Issues related to the Shop assembly operations",
+        "name": "Shop Assembly",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 112,
+        "labeltext": "",
+        "name": "Shop Locations",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 10
+    },
+    {
+        "editable": true,
+        "fieldid": 113,
+        "labeltext": "",
+        "name": "Tools / Parts - Related",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 114,
+        "labeltext": "",
+        "name": "Shop Equipment & Process Issues",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 115,
+        "labeltext": "",
+        "name": "Shop Defects",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 116,
+        "labeltext": "",
+        "name": "Shop-related Operations",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 10
+    },
+    {
+        "editable": true,
+        "fieldid": 117,
+        "labeltext": "",
+        "name": "Instrumentation Process Issues",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 118,
+        "labeltext": "",
+        "name": "Instrumentation - Tool / Part Related",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 119,
+        "labeltext": "",
+        "name": "Shop - Levels",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 120,
+        "labeltext": "",
+        "name": "Instrumentation Related",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 121,
+        "labeltext": "",
+        "name": "Shipping-Related Issues",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 122,
+        "labeltext": "",
+        "name": "Receiving-Related Issues",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 123,
+        "labeltext": "",
+        "name": "EH & S Issues",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 10
+    },
+    {
+        "editable": true,
+        "fieldid": 124,
+        "labeltext": "",
+        "name": "Customer-Related issues",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 125,
+        "labeltext": "",
+        "name": "Customer / Vendor",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 10
+    },
+    {
+        "editable": true,
+        "fieldid": 126,
+        "labeltext": "",
+        "name": "Vendor-Related Issues",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 127,
+        "labeltext": "",
+        "name": "Name of Customer",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 0
+    },
+    {
+        "editable": true,
+        "fieldid": 128,
+        "labeltext": "",
+        "name": "Name of Vendor",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 0
+    },
+    {
+        "editable": true,
+        "fieldid": 129,
+        "labeltext": "",
+        "name": "Timesheet - Related",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 130,
+        "labeltext": "REQUIRED:  Choose whether the Human Resources issues was related to Recruiting/Onboarding or Personnel/Policy.",
+        "name": "Human Resource / Personnel Issues",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 10
+    },
+    {
+        "editable": true,
+        "fieldid": 131,
+        "labeltext": "",
+        "name": "Recruiting / Onboarding Related Issues",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 132,
+        "labeltext": "",
+        "name": "Personnel / HR Process Related Issues",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 133,
+        "labeltext": "",
+        "name": "HR Process & Personnel Related issues",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 134,
+        "labeltext": "",
+        "name": "Name(s) of person(s) issue relates to (Optional)",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 0
+    },
+    {
+        "editable": true,
+        "fieldid": 135,
+        "labeltext": "",
+        "name": "Security",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 10
+    },
+    {
+        "editable": true,
+        "fieldid": 136,
+        "labeltext": "",
+        "name": "General Security",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 137,
+        "labeltext": "",
+        "name": "Access System / Badging",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 138,
+        "labeltext": "",
+        "name": "Physical Security",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 139,
+        "labeltext": "",
+        "name": "Common Areas",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 10
+    },
+    {
+        "editable": true,
+        "fieldid": 140,
+        "labeltext": "Building issues (Ceiling, Walls, Windows, Floors)",
+        "name": "Building Infrastructure",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 10
+    },
+    {
+        "editable": true,
+        "fieldid": 141,
+        "labeltext": "",
+        "name": "Fixtures & Working Environment",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 10
+    },
+    {
+        "editable": true,
+        "fieldid": 142,
+        "labeltext": "",
+        "name": "Facility Issue Types",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 10
+    },
+    {
+        "editable": true,
+        "fieldid": 143,
+        "labeltext": "",
+        "name": "Breakroom / Kitchen Issue Types",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 10
+    },
+    {
+        "editable": true,
+        "fieldid": 144,
+        "labeltext": "",
+        "name": "Breakroom Equipment Issues",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 145,
+        "labeltext": "",
+        "name": "Breakroom Supplies & Misc. Issues",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 146,
+        "labeltext": "",
+        "name": "Management or Project Management Issue",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 10
+    },
+    {
+        "editable": true,
+        "fieldid": 147,
+        "labeltext": "",
+        "name": "Leadership / Management Issues",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 148,
+        "labeltext": "",
+        "name": "Project Management Issues",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 149,
+        "labeltext": "",
+        "name": "Project / SOW Specifics",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 150,
+        "labeltext": "",
+        "name": "Project Managing Processes & Tools",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 151,
+        "labeltext": "",
+        "name": "Quality & Continuous Improvement / ACE",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 10
+    },
+    {
+        "editable": true,
+        "fieldid": 152,
+        "labeltext": "",
+        "name": "Quality-Related Issues",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 153,
+        "labeltext": "",
+        "name": "Continouous Improvement / ACE",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 4
+    },
+    {
+        "editable": true,
+        "fieldid": 154,
+        "labeltext": "",
+        "name": "Administrative & Business Development Issues",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 10
+    },
+    {
+        "editable": true,
+        "fieldid": 155,
+        "labeltext": "",
+        "name": "Administrative Issues",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 10
+    },
+    {
+        "editable": true,
+        "fieldid": 156,
+        "labeltext": "",
+        "name": "Business Development Issues",
+        "showinoverview": false,
+        "showinsummary": true,
+        "type": 10
+    }
+]
