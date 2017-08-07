@@ -2,10 +2,17 @@ import records
 import json
 import pandas
 
-# Log into the MS-SQL Server using a user-specified DSN.  I called mine
-# "PSI-SQL-DSN"
-server = "PSI-SQL-DSN"
-db = records.Database(db_url="mssql://" + server)
+if os.name == 'posix':
+    server = "AWS-SQL"
+    username = sql_user
+    password = sql_passwd
+    db = records.Database(db_url="mssql://{}:{}@{}".format(username,
+                                                           password,
+                                                           server))
+else:
+    server = "PSI-SQL-DSN"
+    db = records.Database(db_url="mssql://" + server)
+
 
 # Write the query that gets all the FieldNames and FieldData for a given
 # TicketID prior to pivoting
