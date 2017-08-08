@@ -1,6 +1,7 @@
 import records
 import json
 import pandas
+import os
 
 if os.name == 'posix':
     server = "AWS-SQL"
