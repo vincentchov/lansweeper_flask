@@ -4,29 +4,24 @@ import pandas
 import os
 
 
-server = "PSI-SQL-DSN"
-db = records.Database(db_url="mssql://" + server)
+# Log into the MS-SQL Server using a user-specified DSN.  I called mine
+# "PSI-SQL-DSN"
+if os.name == 'posix':
+    from secrets import sql_user, sql_passwd
+    server = "AWS-SQL"
+    username = sql_user
+    password = sql_passwd
+    db = records.Database(db_url="mssql://{}:{}@{}".format(username,
+                                                           password,
+                                                           server))
+else:
+    server = "PSI-SQL-DSN"
+    db = records.Database(db_url="mssql://" + server)
 
-db.query("""
-    SELECT DISTINCT TOP 10000
-        htblticket.ticketid as TicketID,
-        htbltickettypes.typename as TicketType,
-        tblassets.AssetName as AssetName,
-        tsysAssetTypes.AssetTypename as AssetTypeName
-    FROM [lansweeperdb].[dbo].[htblticket]
-    INNER JOIN htblticketcustomfield
-        ON htblticket.ticketid = htblticketcustomfield.ticketid
-    INNER JOIN htblcustomfields
-        ON htblticketcustomfield.fieldid = htblcustomfields.fieldid
-    INNER JOIN tblassets
-        ON htblticket.assetid = tblassets.assetid
-    INNER JOIN tsysAssetTypes
-        ON tblassets.AssetType = tsysAssetTypes.AssetType
-    INNER JOIN htbltickettypes
-        ON htblticket.tickettypeid = htbltickettypes.tickettypeid
-    WHERE htbltickettypes.typename
-        LIKE 'IT Support' AND htblticketcustomfield.FieldID IN
-        (15, 55, 60, 72, 81, 83, 84, 85, 89, 90, 91, 92, 93,
-         94, 95, 96, 97, 100, 101, 103)
-    ORDER BY htblticket.ticketid
-""")
+
+my_query = """
+    SELECT * FROM htblticket WHERE htblticket.ticketid = 208
+"""
+
+with open('my_file.csv', 'w') as my_file:
+    my_file.write(db.query(my_query).export("csv"))
