@@ -82,7 +82,8 @@ pivoted_query = """
             WHERE htblticketcustomfield.fieldid NOT IN (27,41,42,43,45,52,88)
             ORDER BY [TicketID],[FieldID]
         )
-        SELECT y.TicketID, TicketType, AssetName, AssetTypeName, '+ @cols +' FROM to_join
+        SELECT y.TicketID, TicketType, AssetName, AssetTypeName, ' + @cols + '
+        FROM to_join
         LEFT JOIN (
         SELECT DISTINCT TicketID AS TicketID, ' +
             @cols + '
