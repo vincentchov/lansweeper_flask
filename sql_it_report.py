@@ -49,7 +49,7 @@ pivoted_query = """
     )
 
     SET @query = '
-        WITH to_join (TicketID, FieldID, FieldName, FieldData)
+        WITH to_join (TicketID, TicketType, AssetName, AssetTypeName)
         AS (
             SELECT DISTINCT TOP 10000
                 htblticket.ticketid as TicketID,
@@ -67,10 +67,6 @@ pivoted_query = """
                 ON tblassets.AssetType = tsysAssetTypes.AssetType
              INNER JOIN htbltickettypes
                 ON htblticket.tickettypeid = htbltickettypes.tickettypeid
-             WHERE htbltickettypes.typename
-                LIKE ''IT Support'' AND htblticketcustomfield.FieldID IN
-                (15, 55, 60, 72, 81, 83, 84, 85, 89, 90, 91, 92, 93,
-                 94, 95, 96, 97, 100, 101, 103)
              ORDER BY htblticket.ticketid
         ),
         pre_pivoted (TicketID, FieldID, FieldName, FieldData)
@@ -86,7 +82,7 @@ pivoted_query = """
             WHERE htblticketcustomfield.fieldid NOT IN (27,41,42,43,45,52,88)
             ORDER BY [TicketID],[FieldID]
         )
-        SELECT * FROM to_join
+        SELECT y.TicketID, TicketType, AssetName, AssetTypeName, '+ @cols +' FROM to_join
         LEFT JOIN (
         SELECT DISTINCT TicketID AS TicketID, ' +
             @cols + '
