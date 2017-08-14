@@ -19,9 +19,11 @@ else:
     db = records.Database(db_url="mssql://" + server)
 
 
-my_query = """
-    SELECT * FROM htblticket WHERE htblticket.ticketid = 208
+query = """
+    SELECT * FROM htblticketcustomfield
+    INNER JOIN htblcustomfields
+        ON htblticketcustomfield.fieldid = htblcustomfields.fieldid
 """
-
-with open('my_file.csv', 'w') as my_file:
-    my_file.write(db.query(my_query).export("csv"))
+filename = os.path.basename(__file__).replace('.py', '')
+with open('../Reports/{}.xls'.format(filename), 'wb') as f:
+    f.write(db.query(query).export('xls'))
