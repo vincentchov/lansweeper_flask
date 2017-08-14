@@ -33,8 +33,7 @@ pivoted_query = """
                 FROM [lansweeperdb].[dbo].[htblticketcustomfield]
                 INNER JOIN htblcustomfields
                     ON htblticketcustomfield.fieldid = htblcustomfields.fieldid
-                WHERE htblticketcustomfield.fieldid
-                    NOT IN (27,41,42,43,45,52,88)
+                WHERE htblticketcustomfield.fieldid IN (154,155,156)
                 ORDER BY [TicketID],[FieldID]
             ) y
          ) x
@@ -49,29 +48,25 @@ pivoted_query = """
     )
 
     SET @query = '
-        WITH to_join (TicketID, TicketType, AssetName, AssetTypeName)
+        WITH to_join (TicketID, TicketType)
         AS (
             SELECT DISTINCT TOP 10000
                 htblticket.ticketid as TicketID,
-                htbltickettypes.typename as TicketType,
-                tblassets.AssetName as AssetName,
-                tsysAssetTypes.AssetTypename as AssetTypeName
+                htbltickettypes.typename as TicketType
              FROM [lansweeperdb].[dbo].[htblticket]
              INNER JOIN htblticketcustomfield
                 ON htblticket.ticketid = htblticketcustomfield.ticketid
              INNER JOIN htblcustomfields
                 ON htblticketcustomfield.fieldid = htblcustomfields.fieldid
-             INNER JOIN tblassets
-                ON htblticket.assetid = tblassets.assetid
-             INNER JOIN tsysAssetTypes
-                ON tblassets.AssetType = tsysAssetTypes.AssetType
              INNER JOIN htbltickettypes
                 ON htblticket.tickettypeid = htbltickettypes.tickettypeid
+             WHERE htbltickettypes.typename
+                LIKE ''Administrative / Business Development''
              ORDER BY htblticket.ticketid
         ),
         pre_pivoted (TicketID, FieldID, FieldName, FieldData)
         AS (
-            SELECT TOP 10000
+            SELECT TOP 1000
                 htblticketcustomfield.ticketid as [TicketID],
                 htblticketcustomfield.fieldid as [FieldID],
                 htblcustomfields.name as [FieldName],
@@ -79,10 +74,10 @@ pivoted_query = """
             FROM [lansweeperdb].[dbo].[htblticketcustomfield]
             INNER JOIN htblcustomfields
                 ON htblticketcustomfield.fieldid = htblcustomfields.fieldid
-            WHERE htblticketcustomfield.fieldid NOT IN (27,41,42,43,45,52,88)
+            WHERE htblticketcustomfield.fieldid IN (154,155,156)
             ORDER BY [TicketID],[FieldID]
         )
-        SELECT y.TicketID, TicketType, AssetName, AssetTypeName, ' + @cols + '
+        SELECT y.TicketID, TicketType, ' + @cols + '
         FROM to_join
         LEFT JOIN (
         SELECT DISTINCT TicketID AS TicketID, ' +
