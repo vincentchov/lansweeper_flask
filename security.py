@@ -30,11 +30,11 @@ pivoted_query = """
                     htblticketcustomfield.fieldid as [FieldID],
                     htblcustomfields.name as [FieldName],
                     htblticketcustomfield.data as [FieldData]
-                FROM [lansweeperdb].[dbo].[htblticketcustomfield]
+                FROM htblticketcustomfield
                 INNER JOIN htblcustomfields
                     ON htblticketcustomfield.fieldid = htblcustomfields.fieldid
                 WHERE htblticketcustomfield.fieldid
-                    NOT IN (27,41,42,43,45,52,88)
+                    IN (15,50,51,53,52,45,135,137,136,138)
                 ORDER BY [TicketID],[FieldID]
             ) y
          ) x
@@ -49,25 +49,50 @@ pivoted_query = """
     )
 
     SET @query = '
-        WITH to_join (TicketID, TicketType, AssetName, AssetTypeName)
+        WITH to_join (TicketID, TicketType, State, [Creation Date],
+                      [Originator Name], Source, [Agent Name],
+                      [Time Worked (Minutes)], [Date of Last Update])
         AS (
             SELECT DISTINCT TOP 10000
                 htblticket.ticketid as TicketID,
                 htbltickettypes.typename as TicketType,
-                tblassets.AssetName as AssetName,
-                tsysAssetTypes.AssetTypename as AssetTypeName
-             FROM [lansweeperdb].[dbo].[htblticket]
-             INNER JOIN htblticketcustomfield
+                htblticketstates.statename AS State,
+                htblticket.date AS [Creation Date],
+                OriginUser.name AS [Originator Name],
+                htblsource.name AS Source,
+                AgentUser.name AS [Agent Name],
+                SUM(htblnotes.timeworked) AS [Time Worked (Minutes)],
+                htblticket.updated AS [Date of Last Update]
+            FROM htblticket
+            INNER JOIN htblticketstates
+                ON htblticketstates.ticketstateid = htblticket.ticketstateid
+            INNER JOIN htblusers AS OriginUser
+                ON OriginUser.userid = htblticket.fromuserid
+            INNER JOIN htblsource
+                ON htblsource.sourceid = htblticket.sourceid
+            LEFT JOIN htblagents
+                ON htblagents.agentid = htblticket.agentid
+            LEFT JOIN htblusers AS AgentUser
+                ON AgentUser.userid = htblagents.userid
+            LEFT JOIN htblnotes
+                ON htblnotes.ticketid = htblticket.ticketid
+            INNER JOIN htblticketcustomfield
                 ON htblticket.ticketid = htblticketcustomfield.ticketid
-             INNER JOIN htblcustomfields
+            INNER JOIN htblcustomfields
                 ON htblticketcustomfield.fieldid = htblcustomfields.fieldid
-             INNER JOIN tblassets
-                ON htblticket.assetid = tblassets.assetid
-             INNER JOIN tsysAssetTypes
-                ON tblassets.AssetType = tsysAssetTypes.AssetType
-             INNER JOIN htbltickettypes
+            INNER JOIN htbltickettypes
                 ON htblticket.tickettypeid = htbltickettypes.tickettypeid
-             ORDER BY htblticket.ticketid
+            WHERE htbltickettypes.typename
+                LIKE ''Security''
+            GROUP BY htblticket.ticketid,
+                htbltickettypes.typename,
+                htblticketstates.statename,
+                htblticket.date,
+                OriginUser.name,
+                htblsource.name,
+                AgentUser.name,
+                htblticket.updated
+            ORDER BY htblticket.ticketid DESC
         ),
         pre_pivoted (TicketID, FieldID, FieldName, FieldData)
         AS (
@@ -79,10 +104,13 @@ pivoted_query = """
             FROM [lansweeperdb].[dbo].[htblticketcustomfield]
             INNER JOIN htblcustomfields
                 ON htblticketcustomfield.fieldid = htblcustomfields.fieldid
-            WHERE htblticketcustomfield.fieldid NOT IN (27,41,42,43,45,52,88)
+            WHERE htblticketcustomfield.fieldid
+                IN (15,50,51,53,52,45,135,137,136,138)
             ORDER BY [TicketID],[FieldID]
         )
-        SELECT y.TicketID, TicketType, AssetName, AssetTypeName, ' + @cols + '
+        SELECT y.TicketID, TicketType, State, [Creation Date],
+               [Originator Name], Source, [Agent Name],
+               [Time Worked (Minutes)], [Date of Last Update] ' + @cols + '
         FROM to_join
         LEFT JOIN (
         SELECT DISTINCT TicketID AS TicketID, ' +
@@ -101,5 +129,5 @@ pivoted_query = """
     EXEC(@query);
 """
 filename = os.path.basename(__file__).replace('.py', '')
-with open('Reports/{}.xls'.format(filename), 'wb') as f:
-    f.write(db.query(pivoted_query).export('xls'))
+with open('Reports/{}.xlsx'.format(filename), 'wb') as f:
+    f.write(db.query(pivoted_query).export('xlsx'))
