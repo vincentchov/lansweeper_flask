@@ -2,7 +2,7 @@ import records
 import json
 import pandas
 import os
-
+import tablib
 
 # Log into the MS-SQL Server using a user-specified DSN.  I called mine
 # "PSI-SQL-DSN"
@@ -20,10 +20,9 @@ else:
 
 
 query = """
-    SELECT * FROM htblticketcustomfield
-    INNER JOIN htblcustomfields
-        ON htblticketcustomfield.fieldid = htblcustomfields.fieldid
+    SELECT * FROM htblnotes
 """
 filename = os.path.basename(__file__).replace('.py', '')
-with open('../Reports/{}.xls'.format(filename), 'wb') as f:
-    f.write(db.query(query).export('xls'))
+results = db.query(query)
+with open('../Reports/{}.xlsx'.format(filename), 'wb') as f:
+    f.write(results.export('xlsx'))
