@@ -106,15 +106,12 @@ pivoted_query = """
             WHERE htblticketcustomfield.fieldid IN (15,41,123)
             ORDER BY [TicketID],[FieldID]
         )
-        SELECT y.TicketID, TicketType, State, [Creation Date],
-               [Originator Name], Source, [Agent Name],
-               [Time Worked (Minutes)], [Date of Last Update] ' + @cols + '
+        SELECT *
         FROM to_join
         LEFT JOIN (
-        SELECT DISTINCT TicketID AS TicketID, ' +
-            @cols + '
+        SELECT DISTINCT TicketID AS TicketID, ' + @cols + '
             FROM (
-                SELECT TicketID, FieldData, FieldName
+                SELECT TicketID, FieldName, FieldData
                 FROM pre_pivoted
             ) x
             PIVOT (
@@ -124,7 +121,7 @@ pivoted_query = """
         ) y
         ON y.TicketID = to_join.TicketID
         '
-    EXEC(@query);
+        EXEC(@query);
 """
 filename = os.path.basename(__file__).replace('.py', '')
 with open('Reports/{}.xlsx'.format(filename), 'wb') as f:

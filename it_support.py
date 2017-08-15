@@ -118,15 +118,12 @@ pivoted_query = """
                     83,85,100,103,101,102,84,90,89)
             ORDER BY [TicketID],[FieldID]
         )
-        SELECT y.TicketID, TicketType, AssetName, AssetTypeName, State,
-               [Creation Date], [Originator Name], Source, [Agent Name],
-               [Time Worked (Minutes)], [Date of Last Update] ' + @cols + '
+        SELECT *
         FROM to_join
         LEFT JOIN (
-        SELECT DISTINCT TicketID AS TicketID, ' +
-            @cols + '
+        SELECT DISTINCT TicketID AS TicketID, ' + @cols + '
             FROM (
-                SELECT TicketID, FieldData, FieldName
+                SELECT TicketID, FieldName, FieldData
                 FROM pre_pivoted
             ) x
             PIVOT (
@@ -136,7 +133,7 @@ pivoted_query = """
         ) y
         ON y.TicketID = to_join.TicketID
         '
-    EXEC(@query);
+        EXEC(@query);
 """
 filename = os.path.basename(__file__).replace('.py', '')
 with open('Reports/{}.xlsx'.format(filename), 'wb') as f:
