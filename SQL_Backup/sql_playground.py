@@ -20,7 +20,17 @@ else:
 
 
 query = """
-    SELECT * FROM htblnotes
+    SELECT TOP 10000
+        htblticketcustomfield.ticketid as [TicketID],
+        htblticketcustomfield.fieldid as [FieldID],
+        htblcustomfields.name as [FieldName],
+        htblticketcustomfield.data as [FieldData]
+    FROM [lansweeperdb].[dbo].[htblticketcustomfield]
+    INNER JOIN htblcustomfields
+        ON htblticketcustomfield.fieldid = htblcustomfields.fieldid
+    WHERE htblticketcustomfield.fieldid
+        IN (15,107) AND htblticketcustomfield.ticketid = 257
+    ORDER BY [TicketID],[FieldID]
 """
 filename = os.path.basename(__file__).replace('.py', '')
 results = db.query(query)

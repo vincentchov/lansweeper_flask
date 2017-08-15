@@ -101,22 +101,19 @@ pivoted_query = """
                 htblticketcustomfield.fieldid as [FieldID],
                 htblcustomfields.name as [FieldName],
                 htblticketcustomfield.data as [FieldData]
-            FROM [lansweeperdb].[dbo].[htblticketcustomfield]
+            FROM htblticketcustomfield
             INNER JOIN htblcustomfields
                 ON htblticketcustomfield.fieldid = htblcustomfields.fieldid
             WHERE htblticketcustomfield.fieldid
                 IN (15,107)
             ORDER BY [TicketID],[FieldID]
         )
-        SELECT y.TicketID, TicketType, State, [Creation Date],
-               [Originator Name], Source, [Agent Name],
-               [Time Worked (Minutes)], [Date of Last Update] ' + @cols + '
+        SELECT *
         FROM to_join
         LEFT JOIN (
-        SELECT DISTINCT TicketID AS TicketID, ' +
-            @cols + '
+        SELECT DISTINCT TicketID AS TicketID, ' + @cols + '
             FROM (
-                SELECT TicketID, FieldData, FieldName
+                SELECT TicketID, FieldName, FieldData
                 FROM pre_pivoted
             ) x
             PIVOT (
