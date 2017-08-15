@@ -96,5 +96,5 @@ pivoted_query = """
     EXEC(@query);
 """
 filename = os.path.basename(__file__).replace('.py', '')
-with open('Reports/{}.xls'.format(filename), 'wb') as f:
-    f.write(db.query(pivoted_query).export('xls'))
+with open('Reports/{}.xlsx'.format(filename), 'wb') as f:
+    f.write(db.query(pivoted_query).export('xlsx'))
