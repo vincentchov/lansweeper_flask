@@ -83,7 +83,7 @@ pivoted_query = """
             INNER JOIN htbltickettypes
                 ON htblticket.tickettypeid = htbltickettypes.tickettypeid
             WHERE htbltickettypes.typename
-                LIKE ''Security''
+                LIKE ''Security ''
             GROUP BY htblticket.ticketid,
                 htbltickettypes.typename,
                 htblticketstates.statename,
