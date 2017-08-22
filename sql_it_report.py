@@ -30,7 +30,7 @@ pivoted_query = """
                     htblticketcustomfield.fieldid as [FieldID],
                     htblcustomfields.name as [FieldName],
                     htblticketcustomfield.data as [FieldData]
-                FROM [lansweeperdb].[dbo].[htblticketcustomfield]
+                FROM htblticketcustomfield
                 INNER JOIN htblcustomfields
                     ON htblticketcustomfield.fieldid = htblcustomfields.fieldid
                 WHERE htblticketcustomfield.fieldid
@@ -56,7 +56,7 @@ pivoted_query = """
                 htbltickettypes.typename as TicketType,
                 tblassets.AssetName as AssetName,
                 tsysAssetTypes.AssetTypename as AssetTypeName
-             FROM [lansweeperdb].[dbo].[htblticket]
+             FROM htblticket
              INNER JOIN htblticketcustomfield
                 ON htblticket.ticketid = htblticketcustomfield.ticketid
              INNER JOIN htblcustomfields
@@ -76,7 +76,7 @@ pivoted_query = """
                 htblticketcustomfield.fieldid as [FieldID],
                 htblcustomfields.name as [FieldName],
                 htblticketcustomfield.data as [FieldData]
-            FROM [lansweeperdb].[dbo].[htblticketcustomfield]
+            FROM htblticketcustomfield
             INNER JOIN htblcustomfields
                 ON htblticketcustomfield.fieldid = htblcustomfields.fieldid
             WHERE htblticketcustomfield.fieldid NOT IN (27,41,42,43,45,52,88)

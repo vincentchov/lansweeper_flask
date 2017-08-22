@@ -100,7 +100,7 @@ pivoted_query = """
                 htblticketcustomfield.fieldid as [FieldID],
                 htblcustomfields.name as [FieldName],
                 htblticketcustomfield.data as [FieldData]
-            FROM [lansweeperdb].[dbo].[htblticketcustomfield]
+            FROM htblticketcustomfield
             INNER JOIN htblcustomfields
                 ON htblticketcustomfield.fieldid = htblcustomfields.fieldid
             WHERE htblticketcustomfield.fieldid IN (15,146,147,148,150)

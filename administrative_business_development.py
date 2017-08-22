@@ -30,7 +30,7 @@ pivoted_query = """
                     htblticketcustomfield.fieldid as [FieldID],
                     htblcustomfields.name as [FieldName],
                     htblticketcustomfield.data as [FieldData]
-                FROM [lansweeperdb].[dbo].[htblticketcustomfield]
+                FROM htblticketcustomfield
                 INNER JOIN htblcustomfields
                     ON htblticketcustomfield.fieldid = htblcustomfields.fieldid
                 WHERE htblticketcustomfield.fieldid IN (154,155,156)
@@ -53,7 +53,7 @@ pivoted_query = """
             SELECT DISTINCT TOP 10000
                 htblticket.ticketid as TicketID,
                 htbltickettypes.typename as TicketType
-             FROM [lansweeperdb].[dbo].[htblticket]
+             FROM htblticket
              INNER JOIN htblticketcustomfield
                 ON htblticket.ticketid = htblticketcustomfield.ticketid
              INNER JOIN htblcustomfields
@@ -71,7 +71,7 @@ pivoted_query = """
                 htblticketcustomfield.fieldid as [FieldID],
                 htblcustomfields.name as [FieldName],
                 htblticketcustomfield.data as [FieldData]
-            FROM [lansweeperdb].[dbo].[htblticketcustomfield]
+            FROM htblticketcustomfield
             INNER JOIN htblcustomfields
                 ON htblticketcustomfield.fieldid = htblcustomfields.fieldid
             WHERE htblticketcustomfield.fieldid IN (154,155,156)
