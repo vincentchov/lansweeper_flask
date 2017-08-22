@@ -2,7 +2,7 @@ import records
 import json
 import pandas
 import os
-from constants import IT_SUPPORT
+from constants import IT_SUPPORT, ADMIN_BUS_DEV
 
 if os.name == 'posix':
     server = "AWS-SQL"
@@ -18,7 +18,7 @@ else:
 
 # Write the query that gets all the FieldNames and FieldData for a given
 # TicketID prior to pivoting
-pivoted_query = """
+query = """
     DECLARE @cols AS NVARCHAR(MAX),
             @query  AS NVARCHAR(MAX)
 
@@ -126,6 +126,47 @@ pivoted_query = """
         '
         EXEC(@query);
 """
-# filename = os.path.basename(__file__).replace('.py', '')
-with open('Reports/it_support.xlsx'.format(filename), 'wb') as f:
-    f.write(db.query(pivoted_query).export('xlsx'))
+
+# Form list of report types and prompt the user to choose one
+report_types = ["ADMIN_BUS_DEV", "IT_SUPPORT"]
+prompt = "Choose an option: \n"
+for i, report_type in enumerate(report_types):
+    prompt += "{}: {}\n".format(i, report_type)
+while True:
+    try:
+        option = int(input(prompt))
+        report_type = report_types[option]
+        print("Please wait...")
+    except ValueError:
+        print("Invalid input.  Choose a number from the list of options...")
+        continue
+    else:
+        break
+
+# Generate a query based on the report type the user chose
+if report_type == "IT_SUPPORT":
+    exec("""formatted_query = query.format({0}['fieldid'],
+                                           {0}['to_join'],
+                                           {0}['select'],
+                                           {0}['join'],
+                                           {0}['typename'],
+                                           {0}['group_by'],
+                                           {0}['fieldid'])
+    """.format(report_type))
+else:
+    exec("""formatted_query = query.format({0}['fieldid'],
+                                           "",
+                                           "",
+                                           "",
+                                           {0}['typename'],
+                                           "",
+                                           {0}['fieldid'])
+    """.format(report_type))
+
+# The filename's output is the lowercase form of the report name
+filename = report_type.lower()
+with open('Reports/{}.xlsx'.format(filename), 'wb') as f:
+    f.write(db.query(formatted_query).export('xlsx'))
+    f.close()
+
+print("Done!")
