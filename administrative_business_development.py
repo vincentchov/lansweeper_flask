@@ -48,25 +48,54 @@ pivoted_query = """
     )
 
     SET @query = '
-        WITH to_join (TicketID, TicketType)
+        WITH to_join (TicketID, TicketType, State, [Creation Date],
+                      [Originator Name], Source, [Agent Name],
+                      [Time Worked (Minutes)], [Date of Last Update])
         AS (
             SELECT DISTINCT TOP 10000
                 htblticket.ticketid as TicketID,
-                htbltickettypes.typename as TicketType
-             FROM htblticket
-             INNER JOIN htblticketcustomfield
+                htbltickettypes.typename as TicketType,
+                htblticketstates.statename AS State,
+                htblticket.date AS [Creation Date],
+                OriginUser.name AS [Originator Name],
+                htblsource.name AS Source,
+                AgentUser.name AS [Agent Name],
+                SUM(htblnotes.timeworked) AS [Time Worked (Minutes)],
+                htblticket.updated AS [Date of Last Update]
+            FROM htblticket
+            INNER JOIN htblticketstates
+                ON htblticketstates.ticketstateid = htblticket.ticketstateid
+            INNER JOIN htblusers AS OriginUser
+                ON OriginUser.userid = htblticket.fromuserid
+            INNER JOIN htblsource
+                ON htblsource.sourceid = htblticket.sourceid
+            LEFT JOIN htblagents
+                ON htblagents.agentid = htblticket.agentid
+            LEFT JOIN htblusers AS AgentUser
+                ON AgentUser.userid = htblagents.userid
+            LEFT JOIN htblnotes
+                ON htblnotes.ticketid = htblticket.ticketid
+            INNER JOIN htblticketcustomfield
                 ON htblticket.ticketid = htblticketcustomfield.ticketid
-             INNER JOIN htblcustomfields
+            INNER JOIN htblcustomfields
                 ON htblticketcustomfield.fieldid = htblcustomfields.fieldid
-             INNER JOIN htbltickettypes
+            INNER JOIN htbltickettypes
                 ON htblticket.tickettypeid = htbltickettypes.tickettypeid
-             WHERE htbltickettypes.typename
+            WHERE htbltickettypes.typename
                 LIKE ''Administrative / Business Development''
-             ORDER BY htblticket.ticketid
+            GROUP BY htblticket.ticketid,
+                htbltickettypes.typename,
+                htblticketstates.statename,
+                htblticket.date,
+                OriginUser.name,
+                htblsource.name,
+                AgentUser.name,
+                htblticket.updated
+            ORDER BY htblticket.ticketid DESC
         ),
         pre_pivoted (TicketID, FieldID, FieldName, FieldData)
         AS (
-            SELECT TOP 1000
+            SELECT TOP 10000
                 htblticketcustomfield.ticketid as [TicketID],
                 htblticketcustomfield.fieldid as [FieldID],
                 htblcustomfields.name as [FieldName],
@@ -77,13 +106,12 @@ pivoted_query = """
             WHERE htblticketcustomfield.fieldid IN (154,155,156)
             ORDER BY [TicketID],[FieldID]
         )
-        SELECT y.TicketID, TicketType, ' + @cols + '
+        SELECT *
         FROM to_join
         LEFT JOIN (
-        SELECT DISTINCT TicketID AS TicketID, ' +
-            @cols + '
+        SELECT DISTINCT TicketID AS TicketID, ' + @cols + '
             FROM (
-                SELECT TicketID, FieldData, FieldName
+                SELECT TicketID, FieldName, FieldData
                 FROM pre_pivoted
             ) x
             PIVOT (
@@ -93,7 +121,7 @@ pivoted_query = """
         ) y
         ON y.TicketID = to_join.TicketID
         '
-    EXEC(@query);
+        EXEC(@query);
 """
 filename = os.path.basename(__file__).replace('.py', '')
 with open('Reports/{}.xlsx'.format(filename), 'wb') as f:

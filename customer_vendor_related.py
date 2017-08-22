@@ -95,7 +95,7 @@ pivoted_query = """
         ),
         pre_pivoted (TicketID, FieldID, FieldName, FieldData)
         AS (
-            SELECT TOP 1000
+            SELECT TOP 10000
                 htblticketcustomfield.ticketid as [TicketID],
                 htblticketcustomfield.fieldid as [FieldID],
                 htblcustomfields.name as [FieldName],
