@@ -2,7 +2,7 @@ import records
 import json
 import pandas
 import os
-from constants import IT_SUPPORT, ADMIN_BUS_DEV
+from constants import SQL_FRAGMENTS
 
 if os.name == 'posix':
     server = "AWS-SQL"
@@ -128,40 +128,32 @@ query = """
 """
 
 # Form list of report types and prompt the user to choose one
-report_types = ["ADMIN_BUS_DEV", "IT_SUPPORT"]
+report_types = [(key, item['typename']) for key, item in SQL_FRAGMENTS.items()]
 prompt = "Choose an option: \n"
 for i, report_type in enumerate(report_types):
-    prompt += "{}: {}\n".format(i, report_type)
+    report_type_name = report_type[1]
+    prompt += "{}: {}\n".format(i, report_type_name)
 while True:
     try:
         option = int(input(prompt))
-        report_type = report_types[option]
-        print("Please wait...")
+        report_type = report_types[option][0]
     except ValueError:
         print("Invalid input.  Choose a number from the list of options...")
         continue
     else:
+        # Done getting input
+        print("Please wait...")
         break
 
 # Generate a query based on the report type the user chose
-if report_type == "IT_SUPPORT":
-    exec("""formatted_query = query.format({0}['fieldid'],
-                                           {0}['to_join'],
-                                           {0}['select'],
-                                           {0}['join'],
-                                           {0}['typename'],
-                                           {0}['group_by'],
-                                           {0}['fieldid'])
-    """.format(report_type))
-else:
-    exec("""formatted_query = query.format({0}['fieldid'],
-                                           "",
-                                           "",
-                                           "",
-                                           {0}['typename'],
-                                           "",
-                                           {0}['fieldid'])
-    """.format(report_type))
+exec("""formatted_query = query.format(SQL_FRAGMENTS['{0}']['fieldid'],
+                                       SQL_FRAGMENTS['{0}']['to_join'],
+                                       SQL_FRAGMENTS['{0}']['select'],
+                                       SQL_FRAGMENTS['{0}']['join'],
+                                       SQL_FRAGMENTS['{0}']['typename'],
+                                       SQL_FRAGMENTS['{0}']['group_by'],
+                                       SQL_FRAGMENTS['{0}']['fieldid'])
+""".format(report_type))
 
 # The filename's output is the lowercase form of the report name
 filename = report_type.lower()
