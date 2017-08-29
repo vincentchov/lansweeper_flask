@@ -120,8 +120,6 @@ raw_query = """
         EXEC(@query);
 """
 
-
-
 def get_report_types():
     report_types = [(key, item['typename']) for key, item in SQL_FRAGMENTS.items()]
     return report_types
