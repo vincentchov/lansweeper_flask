@@ -1,24 +1,17 @@
 import records
 import json
-import pandas
-import os
+import pyodbc
 from constants import SQL_FRAGMENTS
+import pathlib
+from secrets import get_sql_uri
 
-if os.name == 'posix':
-    server = "AWS-SQL"
-    username = sql_user
-    password = sql_passwd
-    db = records.Database(db_url="mssql://{}:{}@{}".format(username,
-                                                           password,
-                                                           server))
-else:
-    server = "PSI-SQL-DSN"
-    db = records.Database(db_url="mssql://" + server)
-
+if __name__ == '__main__':
+    MS_SQL_URI = get_sql_uri()
+    db = records.Database(db_url=MS_SQL_URI)
 
 # Write the query that gets all the FieldNames and FieldData for a given
 # TicketID prior to pivoting
-query = """
+raw_query = """
     DECLARE @cols AS NVARCHAR(MAX),
             @query  AS NVARCHAR(MAX)
 
@@ -127,38 +120,63 @@ query = """
         EXEC(@query);
 """
 
-# Form list of report types and prompt the user to choose one
-report_types = [(key, item['typename']) for key, item in SQL_FRAGMENTS.items()]
-prompt = "Choose an option: \n"
-for i, report_type in enumerate(report_types):
-    report_type_name = report_type[1]
-    prompt += "{}: {}\n".format(i, report_type_name)
-while True:
-    try:
-        option = int(input(prompt))
-        report_type = report_types[option][0]
-    except ValueError:
-        print("Invalid input.  Choose a number from the list of options...")
-        continue
-    else:
-        # Done getting input
-        print("Please wait...")
-        break
 
-# Generate a query based on the report type the user chose
-exec("""formatted_query = query.format(SQL_FRAGMENTS['{0}']['fieldid'],
-                                       SQL_FRAGMENTS['{0}']['to_join'],
-                                       SQL_FRAGMENTS['{0}']['select'],
-                                       SQL_FRAGMENTS['{0}']['join'],
-                                       SQL_FRAGMENTS['{0}']['typename'],
-                                       SQL_FRAGMENTS['{0}']['group_by'],
-                                       SQL_FRAGMENTS['{0}']['fieldid'])
-""".format(report_type))
 
-# The filename's output is the lowercase form of the report name
-filename = report_type.lower()
-with open('Reports/{}.xlsx'.format(filename), 'wb') as f:
-    f.write(db.query(formatted_query).export('xlsx'))
-    f.close()
+def get_report_types():
+    report_types = [(key, item['typename']) for key, item in SQL_FRAGMENTS.items()]
+    return report_types
 
-print("Done!")
+
+def cli_style_query(report_types, option):
+    option = int(option)
+    report_type = report_types[option][0]
+    return format_query(report_type, raw_query)
+
+
+def interactive_query():
+    report_types = get_report_types()
+    prompt = "Choose an option by entering the associated number:\n"
+    for i, report_type in enumerate(report_types):
+        report_type_name = report_type[1]
+        prompt += "{}: {}\n".format(i, report_type_name)
+
+    while True:
+        try:
+            option = int(input(prompt))
+            report_type = report_types[option][0]
+        except ValueError:
+            print("Invalid input.  Choose a number from the list of options...")
+            continue
+        else:
+            # Done getting input
+            print("Please wait...")
+
+            break
+    final_query = format_query(report_type, raw_query)
+    execute_query(report_type, final_query)
+
+
+def format_query(report_type, query):
+    # Generate a query based on the report type the user chose
+    return query.format(SQL_FRAGMENTS[report_type]['fieldid'],
+                        SQL_FRAGMENTS[report_type]['to_join'],
+                        SQL_FRAGMENTS[report_type]['select'],
+                        SQL_FRAGMENTS[report_type]['join'],
+                        SQL_FRAGMENTS[report_type]['typename'],
+                        SQL_FRAGMENTS[report_type]['group_by'],
+                        SQL_FRAGMENTS[report_type]['fieldid'])
+
+
+def execute_query(report_type, query):
+    # The filename's output is the lowercase form of the report name
+    dest_folder = "Reports"
+    pathlib.Path(dest_folder).mkdir(parents=True, exist_ok=True)
+    filename = report_type.lower()
+    with open('{}/{}.xlsx'.format(dest_folder, filename), 'wb') as f:
+        f.write(db.query(query).export('xlsx'))
+        f.close()
+
+    print("Done!")
+
+
+interactive_prompt()
