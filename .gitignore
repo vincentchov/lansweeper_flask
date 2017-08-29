@@ -4,5 +4,8 @@ secrets.py
 ~*
 *~*
 env
-.swp
+*.swp
 *.xlsx
+*.spec
+build
+dist
