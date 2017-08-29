@@ -177,4 +177,4 @@ def execute_query(report_type, query):
     print("Done!")
 
 
-interactive_prompt()
+interactive_query()
