@@ -3,6 +3,24 @@
 
 {% block content %}
 <div class="jumbotron">
-    <h1 class="display-5">Hello World!</h1>
+    <h1 class="display-5">Choose from one the following ticket types:</h1>
+    <div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Report Types</th>
+            </tr>
+        </thead>
+        {% for pair in context.report_types %}
+            <tr>
+                <th>
+                    <a href="/reports/{{ pair.0 }}" class="nav-link">
+                        {{ pair.1 }}
+                    </a>
+                </th>
+            </tr>
+        {% endfor%}
+    </table>
+    </div>
 </div>
 {% endblock %}
