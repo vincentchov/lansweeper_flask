@@ -1,2 +1,4 @@
 pyodbc==4.0.17
 records==0.5.0
+Flask==0.12.2
+docopt==0.6.2
