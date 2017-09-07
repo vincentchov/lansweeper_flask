@@ -42,7 +42,7 @@ __license__ = "MIT"
 
 # Write the query that gets all the FieldNames and FieldData for a given
 # TicketID prior to pivoting
-raw_query = """
+RAW_QUERY = """
     DECLARE @cols AS NVARCHAR(MAX),
             @query  AS NVARCHAR(MAX)
 
@@ -158,27 +158,25 @@ def get_report_types():
     return report_types
 
 
-def interactive_query():
+def get_report_types_prompt():
     report_types = get_report_types()
     prompt = "Choose an option by entering the associated number:\n"
     for i, report_type in enumerate(report_types):
         report_type_name = report_type[1]
         prompt += "{}: {}\n".format(i, report_type_name)
+    return prompt
 
+
+def interactive_query():
+    prompt = get_report_types_prompt()
     while True:
+        print(prompt)
         try:
             option = int(input(prompt))
-            report_type = report_types[option][0]
+            execute_report_given_option(arg)
         except ValueError:
             print("Invalid input. Choose a number from the list of options...")
             continue
-        else:
-            # Done getting input
-            print("Please wait...")
-
-            break
-    final_query = format_query(report_type, raw_query)
-    execute_query(report_type, final_query)
 
 
 def format_query(report_type, query):
@@ -204,18 +202,27 @@ def execute_query(report_type, query):
     print("Done!")
 
 
+def execute_report_given_option(option):
+    """
+        Takes the option as an int, validate the input and then performs the
+        query.
+    """
+    if 0 <= option <= 14:
+        report_types = get_report_types()
+        report_type = report_types[option][0]
+        final_query = format_query(report_type, RAW_QUERY)
+        execute_query(report_type, final_query)
+    else:
+        error_str = "The option selected must be an integer between 0 and 14."
+        raise ValueError(error_str)
+
+
 def main():
-    """Main entry point for the lansweeper-all CLI."""
+    """ Main entry point for the lansweeper-all CLI. """
     try:
         args = docopt(__doc__, version=__version__)
         arg = int(args['<n>'])
-        if 0 <= arg <= 14:
-            report_types = get_report_types()
-            report_type = report_types[arg][0]
-            final_query = format_query(report_type, raw_query)
-            execute_query(report_type, final_query)
-        else:
-            raise ValueError
+        execute_report_given_option(arg)
     except ValueError as e:
         exit("The option selected must be an integer between 0 and 14.")
 
