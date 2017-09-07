@@ -7,5 +7,3 @@ app.config.from_object('config')
 db = records.Database(db_url=app.config['MS_SQL_URI'])
 
 from app import views
-
-

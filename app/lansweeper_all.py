@@ -31,14 +31,24 @@ Report Types:
 import records
 import json
 import pyodbc
-from constants import SQL_FRAGMENTS
 import pathlib
-from secrets import get_sql_uri
 from docopt import docopt
+
+# Set up the database
+if __name__ == '__main__':
+    from constants import SQL_FRAGMENTS
+    from secrets import get_sql_uri
+    MS_SQL_URI = get_sql_uri()
+    db = records.Database(db_url=MS_SQL_URI)
+else:
+    from .constants import SQL_FRAGMENTS
+    from .secrets import get_sql_uri
+    from app import db
 
 __version__ = "0.1.0"
 __author__ = "Vincent Chov"
 __license__ = "MIT"
+
 
 # Write the query that gets all the FieldNames and FieldData for a given
 # TicketID prior to pivoting
@@ -228,6 +238,4 @@ def main():
 
 
 if __name__ == '__main__':
-    MS_SQL_URI = get_sql_uri()
-    db = records.Database(db_url=MS_SQL_URI)
     main()
