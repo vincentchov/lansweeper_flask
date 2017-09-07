@@ -205,11 +205,14 @@ def execute_query(report_type, query):
     dest_folder = "Reports"
     pathlib.Path(dest_folder).mkdir(parents=True, exist_ok=True)
     filename = report_type.lower()
-    with open('{}/{}.xlsx'.format(dest_folder, filename), 'wb') as f:
-        f.write(db.query(query).export('xlsx'))
+    full_path = '{}/{}.xlsx'.format(dest_folder, filename)
+    results = db.query(query)
+    with open(full_path, 'wb') as f:
+        f.write(results.export('xlsx'))
         f.close()
 
     print("Done!")
+    return (filename + '.xlsx', results)
 
 
 def execute_report_given_option(option):
@@ -221,10 +224,12 @@ def execute_report_given_option(option):
         report_types = get_report_types()
         report_type = report_types[option][0]
         final_query = format_query(report_type, RAW_QUERY)
-        execute_query(report_type, final_query)
+        filename, results = execute_query(report_type, final_query)
     else:
         error_str = "The option selected must be an integer between 0 and 14."
         raise ValueError(error_str)
+
+    return (filename, results)
 
 
 def main():
@@ -232,7 +237,7 @@ def main():
     try:
         args = docopt(__doc__, version=__version__)
         arg = int(args['<n>'])
-        execute_report_given_option(arg)
+        filename, results = execute_report_given_option(arg)
     except ValueError as e:
         exit("The option selected must be an integer between 0 and 14.")
 

@@ -1,9 +1,15 @@
 import json
+import tempfile
+import pandas as pd
+import xlsxwriter
 from config import *
 from app import app, db
+from io import BytesIO
+import flask_excel as excel
 from sqlalchemy.exc import ResourceClosedError
 from .lansweeper_all import execute_report_given_option, get_report_types
-from flask import redirect, flash, request, url_for, jsonify, render_template
+from flask import (redirect, flash, request, url_for,
+                   jsonify, render_template, send_file, send_from_directory)
 
 
 @app.route('/')
@@ -21,8 +27,17 @@ def index():
 def reports(option_int):
     try:
         option_int = int(option_int)
-        execute_report_given_option(option_int)
-        message = "Success!"
+        filename, results = execute_report_given_option(option_int)
+        df = results.export('df')
+        output = BytesIO()
+        writer = pd.ExcelWriter(output, engine='xlsxwriter')
+        df.to_excel(writer, 'Sheet1')
+        writer.close()
+        output.seek(0)
+        excel.init_excel(app)
+        return send_file(output,
+                         as_attachment=True,
+                         attachment_filename=filename)
     except ValueError as e:
         message = str(e)
     except ResourceClosedError as e:
