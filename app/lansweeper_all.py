@@ -1,13 +1,44 @@
+'''lansweeper-all
+
+Usage:
+  lansweeper-all -type <n>
+  lansweeper-all -h | --help
+  lansweeper-all --version
+
+Options:
+  -h --help     Show this screen.
+  --version     Show version.
+
+Report Types:
+     Option | Report Type
+    =================================================
+        0   | Administrative / Business Development
+        1   | Customer / Vendor Related
+        2   | EH & S - Environmental Health & Safety
+        3   | Engineering
+        4   | Export Compliance
+        5   | Facility / Maintenance
+        6   | Human Resources
+        7   | IT Support
+        8   | Project Management / Management Issues
+        9   | Purchasing & Accounting
+        10  | Quality
+        11  | Security
+        12  | Shop Operations
+        13  | Timesheet System
+        14  | Training
+'''
 import records
 import json
 import pyodbc
 from constants import SQL_FRAGMENTS
 import pathlib
 from secrets import get_sql_uri
+from docopt import docopt
 
-if __name__ == '__main__':
-    MS_SQL_URI = get_sql_uri()
-    db = records.Database(db_url=MS_SQL_URI)
+__version__ = "0.1.0"
+__author__ = "Vincent Chov"
+__license__ = "MIT"
 
 # Write the query that gets all the FieldNames and FieldData for a given
 # TicketID prior to pivoting
@@ -177,4 +208,23 @@ def execute_query(report_type, query):
     print("Done!")
 
 
-interactive_query()
+def main():
+    """Main entry point for the lansweeper-all CLI."""
+    try:
+        args = docopt(__doc__, version=__version__)
+        arg = int(args['<n>'])
+        if 0 <= arg <= 14:
+            report_types = get_report_types()
+            report_type = report_types[arg][0]
+            query = format_query(report_type, raw_query)
+            execute_query(report_type, query)
+        else:
+            raise ValueError
+    except ValueError as e:
+        exit("The option selected must be an integer between 0 and 14.")
+
+
+if __name__ == '__main__':
+    MS_SQL_URI = get_sql_uri()
+    db = records.Database(db_url=MS_SQL_URI)
+    main()
