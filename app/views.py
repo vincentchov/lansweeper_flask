@@ -22,4 +22,5 @@ def reports(option_int):
     except ResourceClosedError as e:
         message = "No tickets found!"
 
-    return render_template('reports.html', message=message)
+    context_dict = {'message': message}
+    return render_template('reports.html', context=context_dict)
