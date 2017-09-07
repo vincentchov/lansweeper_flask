@@ -151,15 +151,11 @@ raw_query = """
         EXEC(@query);
 """
 
+
 def get_report_types():
-    report_types = [(key, item['typename']) for key, item in SQL_FRAGMENTS.items()]
+    report_types = [(key, item['typename'])
+                    for key, item in SQL_FRAGMENTS.items()]
     return report_types
-
-
-def cli_style_query(report_types, option):
-    option = int(option)
-    report_type = report_types[option][0]
-    return format_query(report_type, raw_query)
 
 
 def interactive_query():
@@ -174,7 +170,7 @@ def interactive_query():
             option = int(input(prompt))
             report_type = report_types[option][0]
         except ValueError:
-            print("Invalid input.  Choose a number from the list of options...")
+            print("Invalid input. Choose a number from the list of options...")
             continue
         else:
             # Done getting input
@@ -216,8 +212,8 @@ def main():
         if 0 <= arg <= 14:
             report_types = get_report_types()
             report_type = report_types[arg][0]
-            query = format_query(report_type, raw_query)
-            execute_query(report_type, query)
+            final_query = format_query(report_type, raw_query)
+            execute_query(report_type, final_query)
         else:
             raise ValueError
     except ValueError as e:
