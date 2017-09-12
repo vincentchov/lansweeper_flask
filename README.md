@@ -1,8 +1,9 @@
-# Lansweeper Ticket Reports
+# Lansweeper-Flask
 This project uses Kenneth Reitz's [Records](https://github.com/kennethreitz/records)
-library in addition to PyODBC to connect to the lansweeperdb MS-SQL Server database.  
+library in addition to PyODBC to connect to the lansweeperdb Microsoft SQL Server database.  
 Records makes it easier to export results of SQL queries and make it easier to
-explore the database to learn its schema.  
+explore the database to learn its schema.  It uses ```docopt``` to handle argument parsing
+so you can use it as a command-line application, or launch a Flask web interface.
 
 ## Setup from source code
 1. Install [Python 3.x](https://www.python.org/downloads/) with pip.
@@ -24,13 +25,18 @@ something other than ```PSI-SQL-DSN```.
 2. See step 3 from above.
 -->
 
-## How to get a Report (source code)
+## How to get a report (command-line)
 All you have to do is run ```lansweeper_all.py``` and enter the number for the
 report type you want when asked for it.  For example, if you want to see a
 table for Administrative / Business Development tickets, activate your virtual
 environment and then run ```python lansweeper_all.py``` at which point it will
 list out the different options.  Enter 0 and hit enter.  The resulting table
 will be placedin a .xlsx file in the Reports folder called ```admin_bus_dev.xlsx```.
+
+## How to get a report (web-interface)
+Launch the Flask web app by running ```python run.py``` and visit the application
+in your web browser at ```localhost:5000```.  From there you can click on the report
+type you would like.
 
 <!--  
 ## How to get a Report (source code)
