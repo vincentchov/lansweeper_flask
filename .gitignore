@@ -9,3 +9,4 @@ env
 *.spec
 build
 dist
+docs/build
