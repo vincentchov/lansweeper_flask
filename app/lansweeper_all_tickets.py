@@ -245,6 +245,11 @@ def count_by_ticket_types():
         ORDER BY htblticket.ticketid DESC
     """
     filename, results = execute_query("ticket_count", query)
+    # Convert results to Pandas DataFrame to count up ticket types
+    df = results.export('df')
+    counted = df.groupby('TicketType').count()
+    print(counted)
+    return counted
 
 
 def main():
