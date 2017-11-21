@@ -3,7 +3,7 @@ SQL_FRAGMENTS = collections.OrderedDict([
     (
         "ADMIN_BUS_DEV",
         {
-            "fieldid": "(154,155,156)",
+            "fieldid": "(52,154,155,156)",
             "to_join": "",
             "select": "",
             "join": "",
@@ -15,7 +15,7 @@ SQL_FRAGMENTS = collections.OrderedDict([
     (
         "CUSTOMER_VENDOR_RELATED",
         {
-            "fieldid": "(124,125,126,127,128)",
+            "fieldid": "(52,124,175)",
             "to_join": "",
             "select": "",
             "join": "",
@@ -27,7 +27,7 @@ SQL_FRAGMENTS = collections.OrderedDict([
     (
         "EH_AND_S",
         {
-            "fieldid": "(15,41,123)",
+            "fieldid": "(15,41,52,123)",
             "to_join": "",
             "select": "",
             "join": "",
@@ -39,7 +39,7 @@ SQL_FRAGMENTS = collections.OrderedDict([
     (
         "ENGINEERING",
         {
-            "fieldid": "(15,108,110)",
+            "fieldid": "(15,52,108,110)",
             "to_join": "",
             "select": "",
             "join": "",
@@ -51,7 +51,7 @@ SQL_FRAGMENTS = collections.OrderedDict([
     (
         "EXPORT_COMPLIANCE",
         {
-            "fieldid": "(15,106)",
+            "fieldid": "(15,52,106)",
             "to_join": "",
             "select": "",
             "join": "",
@@ -63,11 +63,14 @@ SQL_FRAGMENTS = collections.OrderedDict([
     (
         "FACILITY_MAINTENANCE",
         {
-            "fieldid": "(15,43,41,42,142,45)",
+            "fieldid": """
+                            (15,41,42,43,45,48,62,63,64,65,66,
+                             67,68,69,72,73,74,75,76,78,80,142)
+                       """,
             "to_join": "",
             "select": "",
             "join": "",
-            "typename": "Facility / Maintenance",
+            "typename": "Facility / Maintenance Issues",
             "group_by": ""
         }
     ),
@@ -75,7 +78,7 @@ SQL_FRAGMENTS = collections.OrderedDict([
     (
         "HUMAN_RESOURCES",
         {
-            "fieldid": "(15,130,133,131)",
+            "fieldid": "(15,130,131,133,186)",
             "to_join": "",
             "select": "",
             "join": "",
@@ -88,8 +91,10 @@ SQL_FRAGMENTS = collections.OrderedDict([
         "IT_SUPPORT",
         {
             "fieldid": """
-                            (45,43,15,55,56,58,57,88,60,104,105,
-                             83,85,100,103,101,102,84,90,89)
+                            (15,43,45,52,55,56,57,58,60,82,83,84,85,
+                             88,89,90,91,92,93,94,95,96,97,98,99,100,
+                             101,102,103,104,105,157,158,159,160,168,
+                             175,177,178,179,180,181,182,183,184)
                        """,
             "to_join": "AssetName, AssetTypeName, ",
             "select": """
@@ -113,7 +118,7 @@ SQL_FRAGMENTS = collections.OrderedDict([
     (
         "PROJ_MGMT_MGMT_ISSUES",
         {
-            "fieldid": "(15,146,147,148,150)",
+            "fieldid": "(52,146,147,148,150,173,174,175)",
             "to_join": "",
             "select": "",
             "join": "",
@@ -123,13 +128,13 @@ SQL_FRAGMENTS = collections.OrderedDict([
     ),
 
     (
-        "PURCHASING_AND_ACCOUNTING",
+        "PURCHASING_AND_FINANCE",
         {
-            "fieldid": "(15,109,110)",
+            "fieldid": "(15,45,109,126,170,172)",
             "to_join": "",
             "select": "",
             "join": "",
-            "typename": "Purchasing & Accounting",
+            "typename": "Purchasing & Finance",
             "group_by": ""
         }
     ),
@@ -137,7 +142,7 @@ SQL_FRAGMENTS = collections.OrderedDict([
     (
         "QUALITY",
         {
-            "fieldid": "(151,153,152)",
+            "fieldid": "(52,151,152,153)",
             "to_join": "",
             "select": "",
             "join": "",
@@ -149,7 +154,7 @@ SQL_FRAGMENTS = collections.OrderedDict([
     (
         "SECURITY",
         {
-            "fieldid": "(15,50,51,53,52,45,135,137,136,138)",
+            "fieldid": "(15,45,50,51,52,53,135,136,137,138)",
             "to_join": "",
             "select": "",
             "join": "",
@@ -159,9 +164,21 @@ SQL_FRAGMENTS = collections.OrderedDict([
     ),
 
     (
+        "SERVICE_MAINTENANCE",
+        {
+            "fieldid": "(15,187)",
+            "to_join": "",
+            "select": "",
+            "join": "",
+            "typename": "Service / Maintenance Request (Non-IT)",
+            "group_by": ""
+        }
+    ),
+
+    (
         "SHOP_OPERATIONS",
         {
-            "fieldid": "(41,112,116,111,114,115,113,120,117,118,122,121)",
+            "fieldid": "(41,52,112,161,162,164,166)",
             "to_join": "",
             "select": "",
             "join": "",
@@ -173,7 +190,7 @@ SQL_FRAGMENTS = collections.OrderedDict([
     (
         "TIMESHEET_SYSTEM",
         {
-            "fieldid": "(129,110)",
+            "fieldid": "(129,176)",
             "to_join": "",
             "select": "",
             "join": "",
@@ -185,7 +202,7 @@ SQL_FRAGMENTS = collections.OrderedDict([
     (
         "TRAINING",
         {
-            "fieldid": "(15,107)",
+            "fieldid": "(15,52,107)",
             "to_join": "",
             "select": "",
             "join": "",
