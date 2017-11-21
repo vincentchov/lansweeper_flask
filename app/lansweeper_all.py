@@ -24,9 +24,10 @@ Report Types:
         9   | Purchasing & Accounting
         10  | Quality
         11  | Security
-        12  | Shop Operations
-        13  | Timesheet System
-        14  | Training
+        12  | Service / Maintenance Request (Non-IT)
+        13  | Shop Operations
+        14  | Timesheet System
+        15  | Training
 '''
 import records
 import json
@@ -146,7 +147,7 @@ RAW_QUERY = """
         SELECT *
         FROM to_join
         LEFT JOIN (
-        SELECT DISTINCT TicketID AS TicketID, ' + @cols + '
+        SELECT DISTINCT TicketID AS TicketID_2, ' + @cols + '
             FROM (
                 SELECT TicketID, FieldName, FieldData
                 FROM pre_pivoted
@@ -156,7 +157,7 @@ RAW_QUERY = """
                 FOR FieldName IN (' + @cols + ')
             ) p
         ) y
-        ON y.TicketID = to_join.TicketID
+        ON y.TicketID_2 = to_join.TicketID
         '
         EXEC(@query);
 """
@@ -210,7 +211,6 @@ def execute_query(report_type, query):
     with open(full_path, 'wb') as f:
         f.write(results.export('xlsx'))
         f.close()
-
     print("Done!")
     return (filename + '.xlsx', results)
 
@@ -220,13 +220,13 @@ def execute_report_given_option(option):
         Takes the option as an int, validate the input and then performs the
         query.
     """
-    if 0 <= option <= 14:
+    if 0 <= option <= 15:
         report_types = get_report_types()
         report_type = report_types[option][0]
         final_query = format_query(report_type, RAW_QUERY)
         filename, results = execute_query(report_type, final_query)
     else:
-        error_str = "The option selected must be an integer between 0 and 14."
+        error_str = "The option selected must be an integer between 0 and 15."
         raise ValueError(error_str)
 
     return (filename, results)
@@ -239,7 +239,7 @@ def main():
         arg = int(args['<n>'])
         filename, results = execute_report_given_option(arg)
     except ValueError as e:
-        exit("The option selected must be an integer between 0 and 14.")
+        exit("The option selected must be an integer between 0 and 15.")
 
 
 if __name__ == '__main__':
